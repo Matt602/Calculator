@@ -1,3 +1,6 @@
+let displayValue = '0';
+
+
 function add(a,b)
 {
     return a + b;
@@ -38,3 +41,38 @@ function operate(op, a, b)
     }
 
 }
+
+function updateDisplay(text)
+{
+    if(displayValue === '0')
+    {
+        displayValue = text + '';
+    }
+    else
+    {
+        displayValue = displayValue + text;
+    }
+    const dis = document.querySelector('#display');
+    dis.textContent = displayValue;
+}
+
+function clearDisplay()
+{
+    displayValue = '0';
+    updateDisplay(' ');
+}
+
+const buttons = document.querySelectorAll('.digit');
+
+buttons.forEach( button => {
+    button.addEventListener('click', () => {
+        updateDisplay(button.textContent);
+
+    });
+
+});
+
+const clearButton = document.querySelector('.clear');
+clearButton.addEventListener('click', () => {
+    clearDisplay();
+});
